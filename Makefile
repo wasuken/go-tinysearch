@@ -28,4 +28,3 @@ test:
 
 install: deps
 	go install ./cmd/tinysearch
-	
