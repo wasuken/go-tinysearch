@@ -123,3 +123,44 @@ func (pl PostingsList) UnMarshalJSON(b []byte) error {
 	}
 	return nil
 }
+
+func (pl PostingsList) OpenCursor() *Cursor {
+	return &Cursor{
+		postingsList: &pl,
+		current:      pl.Front(),
+	}
+}
+
+type Cursor struct {
+	postingsList *PostingsList
+	current      *list.Element
+}
+
+func (c *Cursor) Next() {
+	c.current = c.current.Next()
+}
+
+func (c *Cursor) NextDoc(id DocumentID) {
+	for !c.Empty() && c.DocId() < id {
+		c.Next()
+	}
+}
+
+func (c *Cursor) Empty() bool {
+	if c.current == nil {
+		return true
+	}
+	return false
+}
+
+func (c *Cursor) Posting() *Posting {
+	return c.current.Value.(*Posting)
+}
+
+func (c *Cursor) DocId() DocumentID {
+	return c.current.Value.(*Posting).DocID
+}
+
+func (c *Cursor) String() string {
+	return fmt.Sprint(c.Posting())
+}
