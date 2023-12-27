@@ -7,8 +7,9 @@ import (
 
 func TestSearchTopK(t *testing.T) {
 	s := NewSearcher("testdata/index")
+	t.Logf("# %v\n", s.indexReader.indexDir)
 	actual := s.SearchTopK([]string{"quarrel", "sir"}, 1)
-	expected := &TopDoc{
+	expected := &TopDocs{
 		2, []*ScoreDoc{
 			{2, 1.9657842846620868},
 		},

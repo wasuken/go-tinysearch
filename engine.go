@@ -2,10 +2,11 @@ package tinysearch
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
 	"io"
 	"os"
 	"path/filepath"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type Engine struct {

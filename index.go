@@ -104,6 +104,7 @@ func (pl PostingsList) String() string {
 }
 
 func (pl PostingsList) MarshalJSON() ([]byte, error) {
+
 	postings := make([]*Posting, 0, pl.Len())
 
 	for e := pl.Front(); e != nil; e = e.Next() {
@@ -112,7 +113,8 @@ func (pl PostingsList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(postings)
 }
 
-func (pl PostingsList) UnMarshalJSON(b []byte) error {
+func (pl *PostingsList) UnmarshalJSON(b []byte) error {
+
 	var postings []*Posting
 	if err := json.Unmarshal(b, &postings); err != nil {
 		return err
@@ -121,6 +123,7 @@ func (pl PostingsList) UnMarshalJSON(b []byte) error {
 	for _, posting := range postings {
 		pl.add(posting)
 	}
+
 	return nil
 }
 

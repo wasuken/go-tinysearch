@@ -2,9 +2,10 @@ package commands
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/urfave/cli"
 	tinysearch "github.com/wasuken/go-tinysearch"
-	"strings"
 )
 
 var searchCommand = cli.Command{

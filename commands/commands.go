@@ -3,9 +3,10 @@ package commands
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"os"
+
+	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/urfave/cli"
 	tinysearch "github.com/wasuken/go-tinysearch"

@@ -1,10 +1,11 @@
 package commands
 
 import (
-	"github.com/urfave/cli"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/urfave/cli"
 )
 
 var createIndexCommand = cli.Command{

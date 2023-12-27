@@ -40,6 +40,7 @@ func (s *Searcher) SearchTopK(query []string, k int) *TopDocs {
 	})
 
 	total := len(results)
+
 	if len(results) > k {
 		results = results[:k]
 	}
@@ -53,7 +54,7 @@ func (s *Searcher) search(query []string) []*ScoreDoc {
 	if s.openCursors(query) == 0 {
 		return []*ScoreDoc{}
 	}
-	c := s.cursors[1]
+	c := s.cursors[0]
 	cursors := s.cursors[1:]
 	docs := make([]*ScoreDoc, 0)
 
